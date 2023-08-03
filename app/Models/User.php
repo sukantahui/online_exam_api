@@ -32,6 +32,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        "created_at",
+        "updated_at"
     ];
 
     /**
@@ -47,5 +49,11 @@ class User extends Authenticatable
         if ( !empty($password) ) {
             $this->attributes['password'] = bcrypt($password);
         }
+    }
+    public function userToOrganisation(){
+        return $this->hasOne(UserToOrganisation::class,'user_id');
+    }
+    public function roleToUser(){
+        return $this->hasOne(RoleToUser::class,'user_id');
     }
 }

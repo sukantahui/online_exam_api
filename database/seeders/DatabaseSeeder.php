@@ -5,8 +5,13 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Department;
 use App\Models\Designation;
+use App\Models\Organisation;
+use App\Models\Role;
+use App\Models\RoleToUser;
 use App\Models\State;
 use App\Models\District;
+use App\Models\User;
+use App\Models\UserToOrganisation;
 use App\Models\Vendor;
 use Illuminate\Database\Seeder;
 
@@ -845,6 +850,16 @@ class DatabaseSeeder extends Seeder
             ['state_id'=>38,'district_name'=>'Kargil'],
             ['state_id'=>38,'district_name'=>'Leh'],
         ]);
+        Role::create(['role_name'=>'Developer']);
+        Role::create(['role_name'=>'Super']);
+        Role::create(['role_name'=>'Admin']);
+
+
+        User::create(["name"=>"Sukanta Hui", "email"=>"sukantahui@gmail.com", "password"=>"sukantahui",]);
+        Organisation::create(["organisation_name"=>"Coder n AccoTax"]);
+        UserToOrganisation::create(["user_id"=>1,"organisation_id"=>1]);
+        RoleToUser::create(['user_id'=>1,'role_id'=>3]);
+
 
         \App\Models\Vendor::factory(50)->create();
         \App\Models\Product::factory(10)->create();

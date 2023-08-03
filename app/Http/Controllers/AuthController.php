@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
-class authController extends Controller
+class AuthController extends Controller
 {
     public function login(Request $request)
     {
@@ -23,6 +24,7 @@ class authController extends Controller
         return response()->json([
                 'access_token' => $token,
                 'token_type' => 'Bearer',
+                'user'=>new UserResource($user)
         ]);
 
     }
