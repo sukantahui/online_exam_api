@@ -12,38 +12,50 @@ use Illuminate\Validation\Rule;
 
 class SubjectGroupController extends ApiController
 {
+    public function  show_all(){
+        $organisation_id=auth()->user()->userToOrganisation->organisation_id;
+        $subjectGroups=SubjectGroup::whereOrganisationId($organisation_id)->get();
+        return $this->successResponse($subjectGroups);
+    }
+    public function  show($id){
+        $organisation_id=auth()->user()->userToOrganisation->organisation_id;
+        $subjectGroup = SubjectGroup::find($id);
+        if($subjectGroup->organisation_id!=$organisation_id){
+            return $this->successResponse(null);
+        }
+        return $this->successResponse($subjectGroup);
+    }
+
     public function store(Request $request){
-//        $rules = array(
-//            'studentName' => 'required|max:255|unique:ledgers,ledger_name',
-//            'stateId' => 'required|exists:states,id',
-//            'dob'=>["required","date_format:Y-m-d",function($attribute, $value, $fail){
-//                if(get_age($value)<4){
-//                    $fail($attribute.' in valid, age should more than 4 but input age is '.get_age($value));
-//                }
-//            }],
-//            'guardianName'=>['max:255',Rule::requiredIf(function() use($request){
-//                return  $request->input('relationToGuardian') || get_age($request->input('dob'))<18;
-//            })],
-//            'relationToGuardian'=>'required_with:guardianName',
-//            'fatherName'=>"required_without:motherName",
-//            'motherName'=>"required_without:fatherName",
-//            'email'=>'email',
-//            'sex'=>'required|in:M,F,O'
-//        );
-//        $messsages = array(
-//            'sex.in'=>"Please use M or F"
-//        );
-//
-//        $validator = Validator::make($request->all(),$rules,$messsages );
-//
-//        if ($validator->fails()) {
-//            return $this->errorResponse($validator->messages(),422);
-//        }
+        $organisation_id=auth()->user()->userToOrganisation->organisation_id;
+        $rules = array(
+            'subjectGroupName' => ['required',Rule::unique('subject_groups','subject_group_name')->where(function ($query) use ($organisation_id) {
+                $query->where('organisation_id', $organisation_id);
+            })]
+        );
+        $messsages = array(
+            'subjectGroupName.required'=>"Name is required"
+
+        );
+
+        $validator = Validator::make($request->all(),$rules,$messsages );
+
+        if ($validator->fails()) {
+            return $this->errorResponse($validator->messages(),422);
+        }
         $subjectGroup = new SubjectGroup();
         $subjectGroup->subject_group_name= $request->subjectGroupName;
-        $subjectGroup->organisation_id= auth()->user()->userToOrganisation->organisation_id;
+        $subjectGroup->organisation_id= $organisation_id;
         $subjectGroup->save();
         return $this->successResponse($subjectGroup);
 
+    }
+    public function update(Request $request){
+
+
+        $subjectGroup = SubjectGroup::find($request->subjectGroupId);
+        $subjectGroup->subject_group_name= $request->subjectGroupName;
+        $subjectGroup->save();
+        return $this->successResponse($subjectGroup);
     }
 }

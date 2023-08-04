@@ -31,6 +31,9 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
         $user = auth()->user();
         return $user->userToOrganisation->organisation;
     });
+    Route::get("subjectGroups",[SubjectGroupController::class,'show_all']);
+    Route::get("subjectGroups/{id}",[SubjectGroupController::class,'show']);
     Route::post("subjectGroups",[SubjectGroupController::class,'store']);
+    Route::patch("subjectGroups",[SubjectGroupController::class, 'update']);
 
 });

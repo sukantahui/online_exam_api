@@ -860,6 +860,11 @@ class DatabaseSeeder extends Seeder
         UserToOrganisation::create(["user_id"=>1,"organisation_id"=>1]);
         RoleToUser::create(['user_id'=>1,'role_id'=>3]);
 
+        User::create(["name"=>"Tanusree Hui", "email"=>"tanusreehui@gmail.com", "password"=>"sukantahui",]);
+        Organisation::create(["organisation_name"=>"ABCD"]);
+        UserToOrganisation::create(["user_id"=>2,"organisation_id"=>2]);
+        RoleToUser::create(['user_id'=>2,'role_id'=>3]);
+
 
 //        \App\Models\Vendor::factory(50)->create();
 //        \App\Models\Product::factory(10)->create();
