@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SubjectGroupController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -30,5 +31,6 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
         $user = auth()->user();
         return $user->userToOrganisation->organisation;
     });
+    Route::post("subjectGroups",[SubjectGroupController::class,'store']);
 
 });
