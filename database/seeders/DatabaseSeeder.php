@@ -861,8 +861,8 @@ class DatabaseSeeder extends Seeder
         RoleToUser::create(['user_id'=>1,'role_id'=>3]);
 
 
-        \App\Models\Vendor::factory(50)->create();
-        \App\Models\Product::factory(10)->create();
+//        \App\Models\Vendor::factory(50)->create();
+//        \App\Models\Product::factory(10)->create();
 
     }
 }

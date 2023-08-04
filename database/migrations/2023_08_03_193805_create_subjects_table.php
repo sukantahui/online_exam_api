@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('subject_code', 20)->nullable(false)->unique();
             $table->string('subject_short_name', 50)->nullable(false);
-            $table->string('subject_full_name', 50)->nullable(false);
-            $table->bigInteger('organisation_id')->unsigned(true);
-            $table->foreign('organisation_id')->references('id')->on('organisations')->onDelete('cascade');
+            $table->string('subject_details', 50)->nullable(false);
+            $table->foreignId('subject_group_id')->references('id')->on('subject_groups')->onDelete('cascade');
             $table->timestamps();
         });
     }

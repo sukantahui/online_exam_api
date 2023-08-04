@@ -21,3 +21,14 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['middleware' => 'auth:sanctum'], function(){
+    Route::get('/me', function(Request $request) {
+        return auth()->user();
+    });
+    Route::get('/currentOrganisation', function(Request $request) {
+        $user = auth()->user();
+        return $user->userToOrganisation->organisation;
+    });
+
+});
