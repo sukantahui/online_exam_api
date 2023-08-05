@@ -3,33 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subject;
-use App\Http\Requests\StoreSubjectRequest;
-use App\Http\Requests\UpdateSubjectRequest;
+use Illuminate\Http\Request;
 
-class SubjectController extends Controller
+class SubjectController extends ApiController
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreSubjectRequest $request)
+    public function store(Request $request)
     {
-        //
+        $organisation_id=auth()->user()->userToOrganisation->organisation_id;
+        $subject = new Subject();
+        $subject->subject_code = $request->subjectCode;
+        $subject->subject_name = $request->subjectName;
+        $subject->subject_details = $request->subjectDetails;
+        $subject->subject_group_id = $request->subjectGroupId;
+        $subject->save();
+        return $this->successResponse($subject);
     }
 
     /**
@@ -39,19 +28,7 @@ class SubjectController extends Controller
     {
         //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Subject $subject)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateSubjectRequest $request, Subject $subject)
+    public function update(Request $request)
     {
         //
     }

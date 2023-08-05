@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\SubjectGroupController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,9 +32,22 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
         $user = auth()->user();
         return $user->userToOrganisation->organisation;
     });
-    Route::get("subjectGroups",[SubjectGroupController::class,'show_all']);
-    Route::get("subjectGroups/{id}",[SubjectGroupController::class,'show']);
-    Route::post("subjectGroups",[SubjectGroupController::class,'store']);
-    Route::patch("subjectGroups",[SubjectGroupController::class, 'update']);
+    //for subject groups
+    Route::group(array('prefix' => 'subjectGroups'), function() {
+        Route::get("/", [SubjectGroupController::class, 'show_all']);
+        Route::get("/{id}", [SubjectGroupController::class, 'show']);
+        Route::post("/", [SubjectGroupController::class, 'store']);
+        Route::patch("/", [SubjectGroupController::class, 'update']);
+        Route::delete("/{id}", [SubjectGroupController::class, 'destroy']);
+    });
+
+    //for subject
+    Route::group(array('prefix' => 'subjects'), function() {
+        Route::get("subjectGroups", [SubjectController::class, 'show_all']);
+        Route::get("/{id}", [SubjectController::class, 'show']);
+        Route::post("/", [SubjectController::class, 'store']);
+        Route::patch("/", [SubjectController::class, 'update']);
+        Route::delete("/{id}", [SubjectController::class, 'destroy']);
+    });
 
 });

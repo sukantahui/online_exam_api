@@ -19,7 +19,7 @@ class SubjectGroupController extends ApiController
     }
     public function  show($id){
         $organisation_id=auth()->user()->userToOrganisation->organisation_id;
-        $subjectGroup = SubjectGroup::find($id);
+        $subjectGroup = SubjectGroup::findOrFail($id);
         if($subjectGroup->organisation_id!=$organisation_id){
             return $this->successResponse(null);
         }
@@ -53,9 +53,18 @@ class SubjectGroupController extends ApiController
     public function update(Request $request){
 
 
-        $subjectGroup = SubjectGroup::find($request->subjectGroupId);
+        $subjectGroup = SubjectGroup::findOrFail($request->subjectGroupId);
         $subjectGroup->subject_group_name= $request->subjectGroupName;
         $subjectGroup->save();
+        return $this->successResponse($subjectGroup);
+    }
+    public function destroy($subject_group_id){
+        $organisation_id=auth()->user()->userToOrganisation->organisation_id;
+        $subjectGroup = SubjectGroup::findOrFail($subject_group_id);
+        if($subjectGroup->organisation_id!=$organisation_id){
+            return $this->errorResponse("Not belongs to You",422);
+        }
+        $subjectGroup->delete();
         return $this->successResponse($subjectGroup);
     }
 }

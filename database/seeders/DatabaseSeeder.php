@@ -10,6 +10,7 @@ use App\Models\Role;
 use App\Models\RoleToUser;
 use App\Models\State;
 use App\Models\District;
+use App\Models\SubjectGroup;
 use App\Models\User;
 use App\Models\UserToOrganisation;
 use App\Models\Vendor;
@@ -859,11 +860,19 @@ class DatabaseSeeder extends Seeder
         Organisation::create(["organisation_name"=>"Coder n AccoTax"]);
         UserToOrganisation::create(["user_id"=>1,"organisation_id"=>1]);
         RoleToUser::create(['user_id'=>1,'role_id'=>3]);
+        SubjectGroup::create(['subject_group_name'=>"Computer",'organisation_id'=>1]);
+        SubjectGroup::create(['subject_group_name'=>"Statistic",'organisation_id'=>1]);
+
 
         User::create(["name"=>"Tanusree Hui", "email"=>"tanusreehui@gmail.com", "password"=>"sukantahui",]);
-        Organisation::create(["organisation_name"=>"ABCD"]);
+        Organisation::create(["organisation_name"=>"Ace Info Solution"]);
         UserToOrganisation::create(["user_id"=>2,"organisation_id"=>2]);
         RoleToUser::create(['user_id'=>2,'role_id'=>3]);
+        SubjectGroup::create(['subject_group_name'=>"Computer",'organisation_id'=>2]);
+        SubjectGroup::create(['subject_group_name'=>"History",'organisation_id'=>2]);
+        SubjectGroup::create(['subject_group_name'=>"Geography",'organisation_id'=>2]);
+
+
 
 
 //        \App\Models\Vendor::factory(50)->create();
