@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('subject_group_name', 50)->nullable(false);
             $table->foreignId('organisation_id')->references('id')->on('organisations')->onDelete('cascade');
-            $table->unique(["subject_group_name", "organisation_id"], 'subject_organisation_unique');
+            $table->unique(["subject_group_name", "organisation_id"], 'subject_group_organisation_unique');
             $table->timestamps();
         });
     }

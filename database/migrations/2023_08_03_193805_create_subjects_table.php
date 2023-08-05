@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
-            $table->string('subject_code', 20)->nullable(false)->unique();
             $table->string('subject_name', 50)->nullable(false);
             $table->string('subject_details', 50)->nullable(true);
             $table->foreignId('subject_group_id')->references('id')->on('subject_groups')->onDelete('cascade');
+            $table->unique(["subject_name", "subject_group_id"], 'subject_subject_group_unique');
             $table->timestamps();
         });
     }

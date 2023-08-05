@@ -50,7 +50,23 @@ class SubjectGroupController extends ApiController
         return $this->successResponse($subjectGroup);
 
     }
-    public function update(Request $request){
+    public function update  (Request $request){
+        $organisation_id=auth()->user()->userToOrganisation->organisation_id;
+        $rules = array(
+            'subjectGroupName' => ['required',Rule::unique('subject_groups','subject_group_name')->where(function ($query) use ($organisation_id) {
+                $query->where('organisation_id', $organisation_id);
+            })]
+        );
+        $messsages = array(
+            'subjectGroupName.required'=>"Name is required"
+
+        );
+
+        $validator = Validator::make($request->all(),$rules,$messsages );
+
+        if ($validator->fails()) {
+            return $this->errorResponse($validator->messages(),422);
+        }
 
 
         $subjectGroup = SubjectGroup::findOrFail($request->subjectGroupId);

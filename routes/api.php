@@ -43,7 +43,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 
     //for subject
     Route::group(array('prefix' => 'subjects'), function() {
-        Route::get("subjectGroups", [SubjectController::class, 'show_all']);
+        Route::get("/", [SubjectController::class, 'show_all']);
         Route::get("/{id}", [SubjectController::class, 'show']);
         Route::post("/", [SubjectController::class, 'store']);
         Route::patch("/", [SubjectController::class, 'update']);

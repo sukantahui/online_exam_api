@@ -26,4 +26,5 @@ class SubjectGroup extends Model
     public function organisation(){
         return $this->belongsTo(Organisation::class,'organisation_id');
     }
+
 }
