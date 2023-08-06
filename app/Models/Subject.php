@@ -26,4 +26,8 @@ class Subject extends Model
      * @var mixed
      */
     private $subject_details;
+    public function subject_group()
+    {
+        return $this->belongsTo(SubjectGroup::class,'subject_group_id');
+    }
 }

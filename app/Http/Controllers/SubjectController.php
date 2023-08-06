@@ -51,23 +51,44 @@ class SubjectController extends ApiController
         return $this->successResponse($subject);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Subject $subject)
-    {
-        //
-    }
     public function update(Request $request)
     {
+        $organisation_id=auth()->user()->userToOrganisation->organisation_id;
+        $subject_group_id = $request->subjectGroupId;
+        $rules = array(
+            'subjectName' => ['required',Rule::unique('subjects','subject_name')->where(function ($query) use ($subject_group_id) {
+                $query->where('subject_group_id', $subject_group_id);
+            })]
+        );
+        $messsages = array(
+            'subjectName.required'=>"Subject Name is required"
 
+        );
+
+        $validator = Validator::make($request->all(),$rules,$messsages );
+
+        if ($validator->fails()) {
+            return $this->errorResponse($validator->messages(),422);
+        }
+        $subject = Subject::findOrFail($request->subjectId);
+        $subject->subject_name = $request->subjectName;
+        $subject->subject_details = $request->subjectDetails;
+        $subject->subject_group_id = $request->subjectGroupId;
+        $subject->save();
+        return $this->successResponse($subject);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Subject $subject)
-    {
-        //
+    public function destroy($subject_id){
+        $subject = Subject::findOrFail($subject_id);
+        $organisation=$subject->subject_group->organisation;
+        $organisation_id=auth()->user()->userToOrganisation->organisation_id;
+        if($organisation->id!=$organisation_id){
+            return $this->errorResponse("Group belongs to other Organisation",422);
+        }
+        $subject->delete();
+        return $this->successResponse($subject);
     }
 }
