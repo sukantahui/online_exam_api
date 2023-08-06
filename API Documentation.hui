@@ -1,0 +1,109 @@
+---------------------------------------------------------------------------------------------
+			Model: SubjectGroup
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Controller: SubjectGroupController
+API: 
+Route::group(array('prefix' => 'subjectGroups'), function() {
+        Route::get("/", [SubjectGroupController::class, 'show_all']);
+        Route::get("/{id}", [SubjectGroupController::class, 'show']);
+        Route::post("/", [SubjectGroupController::class, 'store']);
+        Route::patch("/", [SubjectGroupController::class, 'update']);
+        Route::delete("/{id}", [SubjectGroupController::class, 'destroy']);
+    });
+	
+To create subject Group
+URL: 127.0.0.1/online_examination_project/online_exam_api/public/api/subjectGroups (Method: Post)
+Note: Add token from login (Log in is Must)
+organisation_id will be automatically added from login data
+Value in JSON:
+
+	{
+		"subjectGroupName": "Computer"
+	}
+---------------------------------------------------------------------------------------------	
+To Update subject Group
+URL: 127.0.0.1/online_examination_project/online_exam_api/public/api/subjectGroups (Method: PATCH)
+Note: Add token from login (Log in is Must)
+If this subjectGroup does not belongs to current organisation then validation system will restrict it
+Value in JSON:
+
+	{
+		"subjectGroupId": 2,
+		"subjectGroupName": "Computer Science"
+	}
+---------------------------------------------------------------------------------------------	
+To fetch all subject Group
+URL: 127.0.0.1/online_examination_project/online_exam_api/public/api/subjectGroups (Method: GET)
+Note: Add token from login (Log in is Must)
+You will get only subject groups from current organisation. 
+Value in JSON: Not Applicable
+---------------------------------------------------------------------------------------------
+To fetch a particular subject Group
+URL: 127.0.0.1/online_examination_project/online_exam_api/public/api/subjectGroups/3 (Method: GET)
+Note: Add token from login (Log in is Must)
+If this group does not belongs to current organisation then you will get an error message
+Value in JSON: Not Applicable
+---------------------------------------------------------------------------------------------
+To delete a subject Group
+URL: 127.0.0.1/online_examination_project/online_exam_api/public/api/subjectGroups/3 (Method: DELETE)
+Note: Add token from login (Log in is Must)
+You can delete only subject groups from current organisation. 
+Value in JSON: Not Applicable
+
+---------------------------------------------------------------------------------------------
+			Model: Subject
+---------------------------------------------------------------------------------------------
+Controller: SubjectController
+API: 
+	Route::group(array('prefix' => 'subjects'), function() {
+        Route::get("/", [SubjectController::class, 'show_all']);
+        Route::get("/{id}", [SubjectController::class, 'show']);
+        Route::post("/", [SubjectController::class, 'store']);
+        Route::patch("/", [SubjectController::class, 'update']);
+        Route::delete("/{id}", [SubjectController::class, 'destroy']);
+    });
+	
+To create subject
+URL: 127.0.0.1/online_examination_project/online_exam_api/public/api/subjects (Method: Post)
+Note: Add token from login (Log in is Must)
+subjectGroupId will be checked for current organisation or not
+Value in JSON:
+
+	{
+		"subjectName": "JAVA",
+		"subjectDetails": "nothingt",
+		"subjectGroupId": 2 
+	}
+---------------------------------------------------------------------------------------------	
+To Update subject
+URL: 127.0.0.1/online_examination_project/online_exam_api/public/api/subjects (Method: PATCH)
+Note: Add token from login (Log in is Must)
+If this subject does not belongs to current organisation then validation system will restrict it
+Value in JSON:
+
+	{
+		"subjectId": 1,
+		"subjectName": "Updated",
+		"subjectDetails": "nothingt",
+		"subjectGroupId": 2 
+	}
+---------------------------------------------------------------------------------------------
+To fetch all subjects
+URL: 127.0.0.1/online_examination_project/online_exam_api/public/api/subjects (Method: GET)
+Note: Add token from login (Log in is Must)
+You will get only subjects from current organisation. 
+Value in JSON: Not Applicable
+---------------------------------------------------------------------------------------------
+To fetch a particular subject
+URL: 127.0.0.1/online_examination_project/online_exam_api/public/api/subjects/2 (Method: GET)
+Note: Add token from login (Log in is Must)
+If this subject does not belongs to current organisation then you will get an error message
+Value in JSON: Not Applicable
+---------------------------------------------------------------------------------------------
+To delete a subject
+URL: 127.0.0.1/online_examination_project/online_exam_api/public/api/subjectGroups/2 (Method: DELETE)
+Note: Add token from login (Log in is Must)
+You can delete only subject  from current organisation. 
+Value in JSON: Not Applicable
+
+---------------------------------------------------------------------------------------------
