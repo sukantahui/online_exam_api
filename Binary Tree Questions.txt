@@ -1,0 +1,106 @@
+{
+	The number of edges from the root to the node is called __________ of the tree.
+	a) Height
+	b) Depth
+	c) Length
+	d) Width
+	Answer: b
+	Explanation: The number of edges from the root to the node is called depth of the tree.
+}
+{
+	The number of edges from the node to the deepest leaf is called _________ of the tree.
+	a) Height
+	b) Depth
+	c) Length
+	d) Width
+	Answer: a
+	Explanation: The number of edges from the node to the deepest leaf is called height of the tree.
+}
+{
+	What is a full binary tree?
+	a) Each node has exactly zero or two children
+	b) Each node has exactly two children
+	c) All the leaves are at the same level
+	d) Each node has exactly one or two children
+	Answer: a
+	Explanation: A full binary tree is a tree in which each node has exactly 0 or 2 children.
+
+}
+{
+	What is a complete binary tree?
+	a) Each node has exactly zero or two children
+	b) A binary tree, which is completely filled, with the possible exception of the bottom level, which is filled from right to left
+	c) A binary tree, which is completely filled, with the possible exception of the bottom level, which is filled from left to right
+	d) A tree In which all nodes have degree 2
+	
+	Answer: c
+	Explanation: A binary tree, which is completely filled, with the possible exception of the bottom level, which is filled from left to right is called complete binary tree. A Tree in which each node has exactly zero or two children is called full binary tree. A Tree in which the degree of each node is 2 except leaf nodes is called perfect binary tree.
+}
+{
+	What is the average case time complexity for finding the height of the binary tree?
+	a) h = O(loglogn)
+	b) h = O(nlogn)
+	c) h = O(n)
+	d) h = O(log n)
+	
+	Answer: d
+	Explanation: The nodes are either a part of left sub tree or the right sub tree, so we don’t have to traverse all the nodes, this means the complexity is lesser than n, in the average case, assuming the nodes are spread evenly, the time complexity becomes O(logn).
+}
+{
+	Which of the following is not an advantage of trees?
+	a) Hierarchical structure
+	b) Faster search
+	c) Router algorithms
+	d) Undo/Redo operations in a notepad
+	Answer: d
+	Explanation: Undo/Redo operations in a notepad is an application of stack. Hierarchical structure, Faster search, Router algorithms are advantages of trees.
+}
+{
+	In a full binary tree if number of internal nodes is I, then number of leaves L are?
+	a) L = 2*I
+	b) L = I + 1
+	c) L = I – 1
+	d) L = 2*I – 1
+	Answer: b
+	Explanation: Number of Leaf nodes in full binary tree is equal to 1 + Number of Internal Nodes i.e L = I + 1
+}
+{
+	In a full binary tree if number of internal nodes is I, then number of nodes N are?
+	a) N = 2*I
+	b) N = I + 1
+	c) N = I – 1
+	d) N = 2*I + 1
+	Answer: d
+	Explanation: Relation between number of internal nodes(I) and nodes(N) is N = 2*I+1.
+}
+{
+	In a full binary tree if there are L leaves, then total number of nodes N are?
+	a) N = 2*L
+	b) N = L + 1
+	c) N = L – 1
+	d) N = 2*L – 1
+	Answer: d
+	Explanation: The relation between number of nodes(N) and leaves(L) is N=2*L-1.
+}
+{
+	Which of the following is incorrect with respect to binary trees?
+	a) Let T be a binary tree. For every k ≥ 0, there are no more than 2k nodes in level k
+	b) Let T be a binary tree with λ levels. Then T has no more than 2λ – 1 nodes
+	c) Let T be a binary tree with N nodes. Then the number of levels is at least ceil(log (N + 1))
+	d) Let T be a binary tree with N nodes. Then the number of levels is at least floor(log (N + 1))
+	Answer: d
+	Explanation: In a binary tree, there are atmost 2k nodes in level k and 2k-1 total number of nodes. Number of levels is at least ceil(log(N+1)).
+}
+{
+	Construct a binary tree by using postorder and inorder sequences given below.
+	Inorder: N, M, P, O, Q
+	Postorder: N, P, Q, O, M
+}
+{
+	Construct a binary search tree by using postorder sequence given below.
+	Postorder: 2, 4, 3, 7, 9, 8, 5.
+}
+
+
+
+
