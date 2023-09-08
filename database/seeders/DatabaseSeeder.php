@@ -6,6 +6,8 @@ namespace Database\Seeders;
 use App\Models\Department;
 use App\Models\Designation;
 use App\Models\Organisation;
+use App\Models\QuestionType;
+use App\Models\QuestionZone;
 use App\Models\Role;
 use App\Models\RoleToUser;
 use App\Models\State;
@@ -871,6 +873,29 @@ class DatabaseSeeder extends Seeder
         SubjectGroup::create(['subject_group_name'=>"Computer",'organisation_id'=>2]);
         SubjectGroup::create(['subject_group_name'=>"History",'organisation_id'=>2]);
         SubjectGroup::create(['subject_group_name'=>"Geography",'organisation_id'=>2]);
+
+
+
+        QuestionType::insert([
+            ['question_type_name'=>'MCQ', 'marks' => 1],
+            ['question_type_name'=>'Descriptive', 'marks' => 3],
+            ['question_type_name'=>'True False', 'marks' => 1]
+        ]);
+
+        // QUESTION ZONE
+        QuestionZone::create(['question_zone_name'=>'All']); // 1
+        QuestionZone::create(['question_zone_name'=>'Only Class I']); // 2
+        QuestionZone::create(['question_zone_name'=>'Only Class II']); // 3
+        QuestionZone::create(['question_zone_name'=>'Only Class III']); //4
+        QuestionZone::create(['question_zone_name'=>'Only Class IV']); //5
+        QuestionZone::create(['question_zone_name'=>'Only Class V']); //6
+        QuestionZone::create(['question_zone_name'=>'Only Class VI']); //7
+        QuestionZone::create(['question_zone_name'=>'Only Class VII']); //8
+        QuestionZone::create(['question_zone_name'=>'Only Class VIII']); //9
+        QuestionZone::create(['question_zone_name'=>'Only Class IX']); //10
+        QuestionZone::create(['question_zone_name'=>'Only Class X']); //11
+        QuestionZone::create(['question_zone_name'=>'Only Class XI']); //12
+        QuestionZone::create(['question_zone_name'=>'Only Class XII']); //14
 
 
 

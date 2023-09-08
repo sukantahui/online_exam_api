@@ -9,6 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    // is it text, picture, url or sound
     public function up(): void
     {
         Schema::create('question_content_types', function (Blueprint $table) {
