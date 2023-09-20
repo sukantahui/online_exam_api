@@ -877,9 +877,9 @@ class DatabaseSeeder extends Seeder
 
 
         QuestionType::insert([
-            ['question_type_name'=>'MCQ', 'marks' => 1],
-            ['question_type_name'=>'Descriptive', 'marks' => 3],
-            ['question_type_name'=>'True False', 'marks' => 1]
+            ['question_type_name'=>'MCQ'],
+            ['question_type_name'=>'Descriptive'],
+            ['question_type_name'=>'True False']
         ]);
 
         // QUESTION ZONE
