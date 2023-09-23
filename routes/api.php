@@ -50,4 +50,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
         Route::delete("/{id}", [SubjectController::class, 'destroy']);
     });
 
+    // Route::post("/bijoyaRegistrationForm",[BijoyaRegistrationController::class, 'saveStudentInfo']);
+    // Route::get("/bijoyaRegistrationForm",[BijoyaRegistrationController::class, 'getStudentInfo']);
+
 });
