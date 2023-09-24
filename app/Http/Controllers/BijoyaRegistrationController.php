@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\bijoyaRegistration;
 use App\Http\Requests\StorebijoyaRegistrationRequest;
 use App\Http\Requests\UpdatebijoyaRegistrationRequest;
+use Illuminate\Http\Request;
 
 class BijoyaRegistrationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function getStudentInfo()
     {
-        //
+        $studentRegistration = bijoyaRegistration::get();
+        return response()->json(['success'=>1,'data'=>$studentRegistration], 200,[],JSON_NUMERIC_CHECK);
+
     }
 
     /**

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\SubjectGroupController;
+use App\Http\Controllers\BijoyaRegistrationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -50,7 +51,13 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
         Route::delete("/{id}", [SubjectController::class, 'destroy']);
     });
 
+   
+
     // Route::post("/bijoyaRegistrationForm",[BijoyaRegistrationController::class, 'saveStudentInfo']);
     // Route::get("/bijoyaRegistrationForm",[BijoyaRegistrationController::class, 'getStudentInfo']);
 
+});
+Route::group(array('prefix' => 'dev'), function(){
+    Route::post("/bijoyaRegistrationForm",[BijoyaRegistrationController::class, 'saveStudentInfo']);
+    Route::get("/bijoyaRegistrationForm",[BijoyaRegistrationController::class, 'getStudentInfo']);
 });
