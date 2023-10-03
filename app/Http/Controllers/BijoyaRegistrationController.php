@@ -30,6 +30,7 @@ class BijoyaRegistrationController extends Controller
         $studentRegistration->whatsapp_number = $request->input('whatsappNumber');
         $studentRegistration->email_id = $request->input('email');
         $studentRegistration->number_of_member = $request->input('memberNumber');
+        $studentRegistration->food_habit = $request->input('foodHabit');
 
         $studentRegistration->save();
         return response()->json(['success'=>1,'data'=>$studentRegistration], 200,[],JSON_NUMERIC_CHECK);

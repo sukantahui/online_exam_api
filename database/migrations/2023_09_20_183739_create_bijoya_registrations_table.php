@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('whatsapp_number')->nullable(false)->unique();
             $table->string('email_id')->unique()->nullable(false);
             $table->tinyInteger('number_of_member');
+            $table->string('food_habit')->nullable(false);
 
             $table->timestamps();
         });
