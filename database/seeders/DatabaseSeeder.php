@@ -7,12 +7,15 @@ use App\Models\Department;
 use App\Models\Designation;
 use App\Models\Organisation;
 use App\Models\QuestionType;
+use App\Models\QuestionLevel;
 use App\Models\QuestionZone;
 use App\Models\Role;
 use App\Models\RoleToUser;
 use App\Models\State;
 use App\Models\District;
 use App\Models\SubjectGroup;
+use App\Models\Subject;
+use App\Models\Chapter;
 use App\Models\User;
 use App\Models\UserToOrganisation;
 use App\Models\Vendor;
@@ -32,6 +35,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 //        \App\Models\Department::factory(10)->create();
+
+        
 
         Department::insert([
             ['department_name' => 'General Office'],
@@ -874,12 +879,26 @@ class DatabaseSeeder extends Seeder
         SubjectGroup::create(['subject_group_name'=>"History",'organisation_id'=>2]);
         SubjectGroup::create(['subject_group_name'=>"Geography",'organisation_id'=>2]);
 
+        Subject::insert([
+            ['subject_name' => 'Computer Science', 'subject_details' => 'Computer Science', 'subject_group_id' => 1],
+            ['subject_name' => 'Computer Application', 'subject_details' => 'Computer Application', 'subject_group_id' => 1],
+        ]);
 
+        Chapter::insert([
+            ['subject_id' => 1, 'chapter_name' => "Java Operators"],
+            ['subject_id' => 1, 'chapter_name' => "Java Datatypes"],
+        ]);
 
         QuestionType::insert([
             ['question_type_name'=>'MCQ'],
             ['question_type_name'=>'Descriptive'],
-            ['question_type_name'=>'True False']
+            ['question_type_name'=>'True/False']
+        ]);
+
+        QuestionLevel::insert([
+            ['level_name'=>'Easy'],
+            ['level_name'=>'Medium'],
+            ['level_name'=>'Hard']
         ]);
 
         // QUESTION ZONE
