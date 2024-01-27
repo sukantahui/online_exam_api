@@ -13,7 +13,9 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        $question =  "test";
+        // $question =  Question::get();
+        return $question;
     }
 
     /**

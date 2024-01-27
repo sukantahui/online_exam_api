@@ -7,8 +7,11 @@ use App\Models\Department;
 use App\Models\Designation;
 use App\Models\Organisation;
 use App\Models\QuestionType;
+use App\Models\QuestionContentType;
 use App\Models\QuestionLevel;
 use App\Models\QuestionZone;
+use App\Models\Question;
+use App\Models\Option;
 use App\Models\Role;
 use App\Models\RoleToUser;
 use App\Models\State;
@@ -917,10 +920,25 @@ class DatabaseSeeder extends Seeder
         QuestionZone::create(['question_zone_name'=>'Only Class XII']); //14
 
 
+        QuestionContentType::insert([
+            ['content_type_name' => 'Text'],
+            ['content_type_name' => 'Image'],
+            ['content_type_name' => 'Sound'],
+            ['content_type_name' => 'Video']
+        ]);
+
+
 
 
 //        \App\Models\Vendor::factory(50)->create();
 //        \App\Models\Product::factory(10)->create();
 
+        $x=Question::create(['question_level_id'=>1,'chapter_id'=>1,'question_type_id'=>1,'question_content_type_id'=>1, 'image_address' => '', 'question_description'=>'Consider the following code and choose the correct option: class X { int x; X(int x){x=2;}} class Y extends X{ Y(){} void displayX(){System.out.print(x);}public static void main(String args[]){new Y().displayX();}}']);
+        Option::create(['question_id'=>$x->id,'option'=>'Compiles and display 2','is_answer'=>0]);
+        Option::create(['question_id'=>$x->id,'option'=>'Compiles and runs without any output','is_answer'=>0]);
+        Option::create(['question_id'=>$x->id,'option'=>'Compiles and display 0','is_answer'=>0]);
+        Option::create(['question_id'=>$x->id,'option'=>'Compilation error','is_answer'=>1]);
+
     }
+    
 }

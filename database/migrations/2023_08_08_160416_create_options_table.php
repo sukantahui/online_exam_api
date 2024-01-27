@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('options', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('question_id')->references('id')->on('questions')->onDelete('cascade');
+            $table->string('option', 255)->nullable(false);
+            $table->tinyInteger('is_answer')->default(0);
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\SubjectGroupController;
 use App\Http\Controllers\BijoyaRegistrationController;
+use App\Http\Controllers\QuestionToOptionsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -60,4 +61,9 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 Route::group(array('prefix' => 'dev'), function(){
     Route::post("/bijoyaRegistrationForm",[BijoyaRegistrationController::class, 'saveStudentInfo']);
     Route::get("/bijoyaRegistrationForm",[BijoyaRegistrationController::class, 'getStudentInfo']);
+
+    Route::get("/getQuestion", [QuestionToOptionsController::class, 'getOnlyQuestion']);
+    Route::get("/getOptionsByQuestionId/{questionId}", [QuestionToOptionsController::class, 'getOptionsByQuestionId']);
+    Route::get("/getQuestionAndAnswerByQuestioId/{questionId}", [QuestionToOptionsController::class, 'getQuestionAndAnswerByQuestioId']);
+    // Route::get("/getQuestions", [QuestionController::class, 'getOnlyQuestion']);
 });
